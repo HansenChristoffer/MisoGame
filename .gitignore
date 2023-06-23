@@ -41,3 +41,4 @@ build/
 ### Project specific ###
 src/main/resources/*.properties
 \resources\*.properties
+/target/
