@@ -1,4 +1,6 @@
-package io.miso;
+package io.miso.menu;
+
+import io.miso.core.GameLogic;
 
 import java.util.Scanner;
 

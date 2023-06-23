@@ -1,4 +1,4 @@
-package io.miso;
+package io.miso.menu;
 
 public interface MenuAction {
     public String getText();

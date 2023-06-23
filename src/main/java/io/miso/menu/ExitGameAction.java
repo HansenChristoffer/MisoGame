@@ -1,12 +1,12 @@
-package io.miso;
+package io.miso.menu;
 
 public class ExitGameAction extends MenuActionImpl {
     private String[] args;
-    
-    public ExitGameAction(String text, int id) {
+
+    public ExitGameAction(final String text, final int id) {
         super(text, id);
     }
-    
+
     @Override
     public void exec(final String[] args) {
         this.args = args;

@@ -1,4 +1,4 @@
-package io.miso;
+package io.miso.menu;
 
 import java.util.ArrayList;
 import java.util.List;

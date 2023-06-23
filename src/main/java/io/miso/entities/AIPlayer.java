@@ -1,4 +1,6 @@
-package io.miso;
+package io.miso.entities;
+
+import io.miso.core.Board;
 
 import java.util.Random;
 

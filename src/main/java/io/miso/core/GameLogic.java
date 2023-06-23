@@ -1,4 +1,9 @@
-package io.miso;
+package io.miso.core;
+
+import io.miso.entities.AIPlayer;
+import io.miso.entities.Colour;
+import io.miso.entities.HumanPlayer;
+import io.miso.entities.Player;
 
 import java.util.ArrayList;
 import java.util.List;

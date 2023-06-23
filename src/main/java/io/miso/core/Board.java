@@ -1,19 +1,20 @@
-package io.miso;
+package io.miso.core;
 
-import java.util.Random;
-import java.util.List;
+import io.miso.entities.Colour;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
     private static final char WIDTH_SEPARATOR = '-';
     private static final char HEIGHT_SEPARATOR = '|';
-    
+
     private final Colour[][] gameBoard = new Colour[9][9];
-    
+
     public Board() {
         init();
     }
-    
+
     private void init() {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
@@ -22,15 +23,15 @@ public class Board {
         }
     }
 
-    public void clearPieceAtCoordinates(int x, int y) {
+    public void clearPieceAtCoordinates(final int x, final int y) {
         gameBoard[x][y] = Colour.NONE;
     }
-    
-    public void setPieceAtCoordinates(Colour c, int x, int y) {
+
+    public void setPieceAtCoordinates(final Colour c, final int x, final int y) {
         gameBoard[x][y] = c;
     }
-    
-    public boolean isValidPosition(int x, int y) {
+
+    public boolean isValidPosition(final int x, final int y) {
         if (x < 0 || x >= gameBoard.length || y < 0 || y >= gameBoard[0].length) {
             return false;
         }
@@ -38,26 +39,26 @@ public class Board {
     }
 
     // A method that checks if the position is free
-    public boolean isPositionFree(int x, int y) {
+    public boolean isPositionFree(final int x, final int y) {
         return gameBoard[x][y] == Colour.NONE;
     }
-    
-    public boolean gameOver(int currentTurn) {
+
+    public boolean gameOver(final int currentTurn) {
         // Check if either player has won
         return validateWinConditions(Colour.BLACK, currentTurn) || validateWinConditions(Colour.WHITE, currentTurn);
     }
-    
+
     public void printBoard() {
-        int gameBoardWidthLength = gameBoard.length * 5 + 3;
-        
+        final int gameBoardWidthLength = gameBoard.length * 5 + 3;
+
         for (int i = 0; i < gameBoardWidthLength; i++) {
             System.out.print(WIDTH_SEPARATOR);
-            
+
             if (i == gameBoardWidthLength - 1) {
                 System.out.println();
             }
         }
-        
+
         for (int i = 0; i < gameBoard.length; i++) {
             System.out.print(HEIGHT_SEPARATOR + " ");
             for (int j = 0; j < gameBoard[i].length; j++) {
@@ -76,28 +77,28 @@ public class Board {
             }
             System.out.println(HEIGHT_SEPARATOR);
         }
-        
+
         for (int i = 0; i < gameBoardWidthLength; i++) {
             System.out.print(WIDTH_SEPARATOR);
-            
+
             if (i == gameBoardWidthLength - 1) {
                 System.out.println();
             }
         }
     }
-    
-    public boolean validateWinConditions(Colour colour, int currentTurn) {
-        int winLength = 5;
-        
+
+    public boolean validateWinConditions(final Colour colour, final int currentTurn) {
+        final int winLength = 5;
+
         if (currentTurn < winLength) {
             return false;
         }
-        
+
         // Check rows, columns and diagonals
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
                 if (gameBoard[i][j] == colour) {
-                    
+
                     // Check row
                     if (i + winLength <= gameBoard.length) {
                         boolean win = true;
@@ -109,7 +110,7 @@ public class Board {
                         }
                         if (win) return true;
                     }
-    
+
                     // Check column
                     if (j + winLength <= gameBoard[i].length) {
                         boolean win = true;
@@ -121,7 +122,7 @@ public class Board {
                         }
                         if (win) return true;
                     }
-    
+
                     // Check diagonal
                     if (i + winLength <= gameBoard.length && j + winLength <= gameBoard[i].length) {
                         boolean win = true;
@@ -136,12 +137,12 @@ public class Board {
                 }
             }
         }
-    
+
         return false;
     }
-    
+
     public List<Integer[]> getValidMoves() {
-        List<Integer[]> validMoves = new ArrayList<>();
+        final List<Integer[]> validMoves = new ArrayList<>();
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
                 if (gameBoard[i][j] == Colour.NONE) {
@@ -151,15 +152,15 @@ public class Board {
         }
         return validMoves;
     }
-    
-    public Colour getPieceAtCoordinates(int x, int y) {
+
+    public Colour getPieceAtCoordinates(final int x, final int y) {
         return gameBoard[x][y];
     }
-    
+
     public Colour[][] getGameBoard() {
         return gameBoard;
     }
-    
+
     public int getBoardSize() {
         return gameBoard.length;
     }
